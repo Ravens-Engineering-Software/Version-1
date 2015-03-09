@@ -1,10 +1,10 @@
-package v1_array;
+package v1_1;
 
 /**
  *
  * @authors Kieran Bingham, Cameron Sokalski, Jacob Larose
  */
-public class V1_array {
+public class V1_1 {
 
     public static void main(String[] args) {
         int[][] materials= {{50},{100},{70},{80},{80},{300},{300},{500},{275}};
