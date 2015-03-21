@@ -10,7 +10,7 @@ public class V1_1 {
         //Variable definition
         int[][] materials= {{50},{100},{70},{80},{80},{300},{300},{500},{275}};
         double[][] drillSize={{0.03125},{0.0625},{0.078125}};
-        String[] materialNames={"steel","mild steel","carbop[n steel","stainless steel","bronze","aluminum","brass","plastic","wood"};
+        String[] materialNames={"steel","mild steel","carbon steel","stainless steel","bronze","aluminum","brass","plastic","wood"};
         
         System.out.println(drillSize[0][0]);
         //Code Start
