@@ -20,6 +20,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -60,28 +61,31 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="rpmLabel" max="-2" attributes="0"/>
+              <Component id="toolbarPanel" alignment="0" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace pref="57" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="rpmLabel" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jSeparator1" min="-2" pref="300" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="materialBox" min="-2" pref="162" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="numeratorLabel" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jSeparator1" min="-2" pref="300" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                          <Component id="materialBox" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="numeratorLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="diamiterBox" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="133" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="61" max="32767" attributes="0"/>
-              </Group>
-              <Component id="toolbarPanel" alignment="0" max="32767" attributes="0"/>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="diamiterBox" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="54" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -89,21 +93,22 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <Component id="toolbarPanel" max="-2" attributes="0"/>
-                  <EmptySpace pref="86" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace pref="70" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="rpmLabel" alignment="1" max="-2" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="materialBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="numeratorLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="numeratorLabel" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="diamiterBox" max="32767" attributes="0"/>
-                  <EmptySpace pref="97" max="32767" attributes="0"/>
+                  <Component id="diamiterBox" max="-2" attributes="0"/>
+                  <EmptySpace pref="196" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -114,14 +119,14 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="toolbar" alignment="0" max="32767" attributes="0"/>
+                  <Component id="toolbar" alignment="0" pref="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="toolbar" min="-2" max="-2" attributes="0"/>
+                      <Component id="toolbar" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -139,10 +144,26 @@
                 </Property>
                 <Property name="floatable" type="boolean" value="false"/>
                 <Property name="rollover" type="boolean" value="true"/>
+                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[186, 25]"/>
+                </Property>
+                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[186, 25]"/>
+                </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[592, 25]"/>
+                </Property>
               </Properties>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
               <SubComponents>
+                <Component class="javax.swing.JLabel" name="jLabel1">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/resorces/ldhssRaven.png"/>
+                    </Property>
+                  </Properties>
+                </Component>
                 <Component class="javax.swing.JButton" name="jButton1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jButton1"/>
@@ -171,16 +192,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="materialBox">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="0"/>
-            </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
         </Component>
@@ -199,6 +212,7 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="diamiterBox">
           <Properties>
+            <Property name="editable" type="boolean" value="true"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="0"/>
             </Property>
@@ -211,6 +225,14 @@
               </StringArray>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="GO"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

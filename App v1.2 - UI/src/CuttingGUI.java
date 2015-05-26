@@ -6,8 +6,12 @@
 
 /**
  *
- * @author Family
+ * @author Kieran Bingham, Cameron Sokalski, Jacob Laross
  */
+
+import javax.swing.DefaultListModel;
+import javax.swing.DefaultComboBoxModel;
+
 public class CuttingGUI extends javax.swing.JFrame {
 
     /**
@@ -15,6 +19,13 @@ public class CuttingGUI extends javax.swing.JFrame {
      */
     public CuttingGUI() {
         initComponents();
+        DefaultComboBoxModel materialListModel = (DefaultComboBoxModel) materialBox.getModel();
+        String[] materialNames={"steel","mild steel","carbon steel","stainless steel","bronze","aluminum","brass","plastic","wood"};
+        int[] materials= {50,100,70,80,80,300,300,500,275};
+        for (String name:materialNames){
+            materialListModel.addElement(name);
+        }
+        
     }
 
     /**
@@ -30,12 +41,14 @@ public class CuttingGUI extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
         toolbarPanel = new javax.swing.JPanel();
         toolbar = new javax.swing.JToolBar();
+        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         rpmLabel = new javax.swing.JLabel();
         materialBox = new javax.swing.JComboBox();
         numeratorLabel = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         diamiterBox = new javax.swing.JComboBox();
+        jButton2 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -49,6 +62,7 @@ public class CuttingGUI extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         mainPanel.setBackground(new java.awt.Color(102, 0, 102));
 
@@ -56,6 +70,12 @@ public class CuttingGUI extends javax.swing.JFrame {
         toolbar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         toolbar.setFloatable(false);
         toolbar.setRollover(true);
+        toolbar.setMaximumSize(new java.awt.Dimension(186, 25));
+        toolbar.setMinimumSize(new java.awt.Dimension(186, 25));
+        toolbar.setPreferredSize(new java.awt.Dimension(592, 25));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resorces/ldhssRaven.png"))); // NOI18N
+        toolbar.add(jLabel1);
 
         jButton1.setText("jButton1");
         jButton1.setFocusable(false);
@@ -67,68 +87,76 @@ public class CuttingGUI extends javax.swing.JFrame {
         toolbarPanel.setLayout(toolbarPanelLayout);
         toolbarPanelLayout.setHorizontalGroup(
             toolbarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(toolbar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(toolbar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         toolbarPanelLayout.setVerticalGroup(
             toolbarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, toolbarPanelLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(toolbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(toolbar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         rpmLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         rpmLabel.setForeground(new java.awt.Color(255, 255, 255));
         rpmLabel.setText("RPM =");
 
-        materialBox.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        materialBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         numeratorLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         numeratorLabel.setForeground(new java.awt.Color(255, 255, 255));
         numeratorLabel.setText("*              4");
 
+        diamiterBox.setEditable(true);
         diamiterBox.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         diamiterBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jButton2.setText("GO");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(rpmLabel)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(materialBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(numeratorLabel)))
-                .addContainerGap(61, Short.MAX_VALUE))
             .addComponent(toolbarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(diamiterBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(183, 183, 183))
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addContainerGap(57, Short.MAX_VALUE)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                        .addComponent(rpmLabel)
+                        .addGap(18, 18, 18)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addComponent(materialBox, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(numeratorLabel))
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(diamiterBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addComponent(toolbarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rpmLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(rpmLabel)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(materialBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(numeratorLabel))
+                            .addComponent(numeratorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(diamiterBox)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addComponent(diamiterBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(196, Short.MAX_VALUE))
         );
 
         rpmLabel.getAccessibleContext().setAccessibleDescription("");
@@ -146,6 +174,11 @@ public class CuttingGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        DefaultComboBoxModel materialListModel = (DefaultComboBoxModel) materialBox.getModel();
+        int materialSelected = materialListModel.indexOf(materialListModel.getSelectedItem());
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,6 +218,8 @@ public class CuttingGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox diamiterBox;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel mainPanel;
