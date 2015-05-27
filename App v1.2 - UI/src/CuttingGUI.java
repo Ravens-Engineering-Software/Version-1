@@ -21,11 +21,10 @@ public class CuttingGUI extends javax.swing.JFrame {
         initComponents();
         DefaultComboBoxModel materialListModel = (DefaultComboBoxModel) materialBox.getModel();
         String[] materialNames={"steel","mild steel","carbon steel","stainless steel","bronze","aluminum","brass","plastic","wood"};
-        int[] materials= {50,100,70,80,80,300,300,500,275};
         for (String name:materialNames){
             materialListModel.addElement(name);
         }
-        
+        resultLabel.setText("");
     }
 
     /**
@@ -49,6 +48,7 @@ public class CuttingGUI extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         diamiterBox = new javax.swing.JComboBox();
         jButton2 = new javax.swing.JButton();
+        resultLabel = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -97,11 +97,11 @@ public class CuttingGUI extends javax.swing.JFrame {
         );
 
         rpmLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        rpmLabel.setForeground(new java.awt.Color(255, 255, 255));
+        rpmLabel.setForeground(new java.awt.Color(204, 204, 204));
         rpmLabel.setText("RPM =");
 
-        numeratorLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        numeratorLabel.setForeground(new java.awt.Color(255, 255, 255));
+        numeratorLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        numeratorLabel.setForeground(new java.awt.Color(204, 204, 204));
         numeratorLabel.setText("*              4");
 
         diamiterBox.setEditable(true);
@@ -115,15 +115,19 @@ public class CuttingGUI extends javax.swing.JFrame {
             }
         });
 
+        resultLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        resultLabel.setForeground(new java.awt.Color(204, 204, 204));
+        resultLabel.setText("= result");
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(toolbarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
+                .addContainerGap(66, Short.MAX_VALUE)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                    .addGroup(mainPanelLayout.createSequentialGroup()
                         .addComponent(rpmLabel)
                         .addGap(18, 18, 18)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,19 +136,21 @@ public class CuttingGUI extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(numeratorLabel))
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                         .addComponent(diamiterBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addGap(100, 100, 100)))
                 .addComponent(jButton2)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(resultLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addComponent(toolbarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addGap(63, 63, 63)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(rpmLabel)
                     .addGroup(mainPanelLayout.createSequentialGroup()
@@ -156,7 +162,9 @@ public class CuttingGUI extends javax.swing.JFrame {
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(diamiterBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(196, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addComponent(resultLabel)
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         rpmLabel.getAccessibleContext().setAccessibleDescription("");
@@ -176,8 +184,23 @@ public class CuttingGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //Create arrays
+        int[] materials= {50,100,70,80,80,300,300,500,275};
+        
+        //Get material value 
         DefaultComboBoxModel materialListModel = (DefaultComboBoxModel) materialBox.getModel();
-        int materialSelected = materialListModel.indexOf(materialListModel.getSelectedItem());
+        int materialSelected = materialListModel.getIndexOf(materialListModel.getSelectedItem());
+        int materialSpeed = materials[materialSelected]; 
+        
+        //Get drill diamiter 
+        int drillDiamiter = Integer.valueOf((String)(diamiterBox.getSelectedItem()));
+//        resultLabel.setText("= "+ diamiterBox.getSelectedItem() + " - " + diamiterBox.getSelectedIndex() );
+        
+        //Calculate
+        int result = (materialSpeed * 4) / drillDiamiter; 
+        
+        //Output callculation result
+        resultLabel.setText("= "+result);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -225,6 +248,7 @@ public class CuttingGUI extends javax.swing.JFrame {
     private javax.swing.JPanel mainPanel;
     private javax.swing.JComboBox materialBox;
     private javax.swing.JLabel numeratorLabel;
+    private javax.swing.JLabel resultLabel;
     private javax.swing.JLabel rpmLabel;
     private javax.swing.JToolBar toolbar;
     private javax.swing.JPanel toolbarPanel;
