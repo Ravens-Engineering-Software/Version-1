@@ -187,17 +187,26 @@ public class CuttingGUI extends javax.swing.JFrame {
         //Create arrays
         int[] materials= {50,100,70,80,80,300,300,500,275};
         
+        //Define Vars
+        int materialSpeed; 
+        double drillDiamiter = 0; 
+        double result; 
+        
         //Get material value 
         DefaultComboBoxModel materialListModel = (DefaultComboBoxModel) materialBox.getModel();
-        int materialSelected = materialListModel.getIndexOf(materialListModel.getSelectedItem());
-        int materialSpeed = materials[materialSelected]; 
+        materialSpeed = materialListModel.getIndexOf(materialListModel.getSelectedItem());
+        materialSpeed = materials[materialSpeed]; 
         
         //Get drill diamiter 
-        int drillDiamiter = Integer.valueOf((String)(diamiterBox.getSelectedItem()));
+        try {
+            drillDiamiter = Double.valueOf((String)(diamiterBox.getSelectedItem()));
+        } catch (NumberFormatException e) {
+            
+        }
 //        resultLabel.setText("= "+ diamiterBox.getSelectedItem() + " - " + diamiterBox.getSelectedIndex() );
         
         //Calculate
-        int result = (materialSpeed * 4) / drillDiamiter; 
+        result = (materialSpeed * 4) / drillDiamiter; 
         
         //Output callculation result
         resultLabel.setText("= "+result);
