@@ -191,39 +191,24 @@ public class CuttingGUI extends javax.swing.JFrame {
         //Create arrays
         int[] materials= {50,100,70,80,80,300,300,500,275};
         
-        //Define Vars
-        int materialSpeed; 
-        double drillDiameter = 1; 
-        double result; 
-        String diameterString;
-        
         //Get material value 
         DefaultComboBoxModel materialListModel = (DefaultComboBoxModel) materialBox.getModel();
-        materialSpeed = materialListModel.getIndexOf(materialListModel.getSelectedItem());
-        materialSpeed = materials[materialSpeed]; 
+        drill.materialSpeed = materialListModel.getIndexOf(materialListModel.getSelectedItem());
+        drill.materialSpeed = materials[drill.materialSpeed]; 
         
         //Get drill diamiter 
-        diameterString = (String)(diamiterBox.getSelectedItem());
+        drill.diameterString = (String)(diamiterBox.getSelectedItem());
         
-        if (diameterString.matches(".*[a-zA-Z]+.*")){
-            resultLabel.setText("drill diamiter can't be a string");
-        } else if (diameterString.contains("/")){
-            if (diameterString.substring(diameterString.indexOf("/")+1).contains("/"))
-                resultLabel.setText("Only one '/'");
-            else
-                drillDiameter = drill.getValue(diameterString);
+        //Finds diameter value and exicutes if no errors are found
+        if (drill.findDiameter()==false){
+            //Calculate
+            drill.calculate();
+        
+            //Output calculation result
+            resultLabel.setText("= "+drill.RPM+" RPM");
         } else {
-            drillDiameter = Double.valueOf(diameterString);
-            System.out.println("Works");
+            resultLabel.setText(drill.errorMessage);
         }
-        
-//        resultLabel.setText("= "+ diamiterBox.getSelectedItem() + " - " + diamiterBox.getSelectedIndex() );
-        
-        //Calculate
-        result = (materialSpeed * 4) / drillDiameter; 
-        
-        //Output callculation result
-        //resultLabel.setText("= "+result);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
