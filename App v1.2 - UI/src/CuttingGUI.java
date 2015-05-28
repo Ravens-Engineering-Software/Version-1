@@ -13,6 +13,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.DefaultComboBoxModel;
 
 public class CuttingGUI extends javax.swing.JFrame {
+    
+    FileReader reader = new FileReader(); 
 
     /**
      * Creates new form CuttingGUI
@@ -25,6 +27,8 @@ public class CuttingGUI extends javax.swing.JFrame {
             materialListModel.addElement(name);
         }
         resultLabel.setText("");
+        
+        reader.initialFileReader();
     }
 
     /**
