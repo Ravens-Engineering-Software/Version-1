@@ -71,6 +71,7 @@ public class CuttingGUI extends javax.swing.JFrame {
         toolbar1 = new javax.swing.JToolBar();
         ravenEyes = new javax.swing.JLabel();
         homeButton = new javax.swing.JButton();
+        cat = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -192,7 +193,7 @@ public class CuttingGUI extends javax.swing.JFrame {
                 .addComponent(diamiterBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69)
                 .addComponent(resultLabel)
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addContainerGap(220, Short.MAX_VALUE))
         );
 
         rpmLabel.getAccessibleContext().setAccessibleDescription("");
@@ -245,35 +246,43 @@ public class CuttingGUI extends javax.swing.JFrame {
         homeButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         toolbar1.add(homeButton);
 
+        cat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resorces/cat-small.png"))); // NOI18N
+
         javax.swing.GroupLayout creditPanelLayout = new javax.swing.GroupLayout(creditPanel);
         creditPanel.setLayout(creditPanelLayout);
         creditPanelLayout.setHorizontalGroup(
             creditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(toolbar1, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+            .addGroup(creditPanelLayout.createSequentialGroup()
+                .addGroup(creditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(creditPanelLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(creditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jacobLabel)
+                            .addComponent(kieranLabel)
+                            .addComponent(cameronLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(creditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jacobSeparator, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                            .addComponent(kieranSeparator, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cameronSeparator))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(creditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jacobDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cameronDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(kieranDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(creditPanelLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(header)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, creditPanelLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(footer))
             .addGroup(creditPanelLayout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(header)
+                .addGap(163, 163, 163)
+                .addComponent(cat)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(creditPanelLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(creditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jacobLabel)
-                    .addComponent(kieranLabel)
-                    .addComponent(cameronLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(creditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jacobSeparator, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(kieranSeparator, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cameronSeparator))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addGroup(creditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jacobDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cameronDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(kieranDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-            .addComponent(toolbar1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         creditPanelLayout.setVerticalGroup(
             creditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,7 +316,9 @@ public class CuttingGUI extends javax.swing.JFrame {
                             .addComponent(cameronLabel)
                             .addComponent(cameronDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(cameronSeparator, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
+                .addComponent(cat)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(footer))
         );
 
@@ -393,6 +404,7 @@ public class CuttingGUI extends javax.swing.JFrame {
     private javax.swing.JLabel cameronDescription;
     private javax.swing.JLabel cameronLabel;
     private javax.swing.JSeparator cameronSeparator;
+    private javax.swing.JLabel cat;
     private javax.swing.JPanel creditPanel;
     private javax.swing.JComboBox diamiterBox;
     private javax.swing.JLabel footer;
