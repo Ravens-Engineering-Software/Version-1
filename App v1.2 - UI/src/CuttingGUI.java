@@ -14,6 +14,7 @@ import javax.swing.DefaultComboBoxModel;
 
 public class CuttingGUI extends javax.swing.JFrame {
 
+    DrillDiameter drill = new DrillDiameter(); 
     /**
      * Creates new form CuttingGUI
      */
@@ -184,13 +185,17 @@ public class CuttingGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //Initalize
+        resultLabel.setText("");
+        
         //Create arrays
         int[] materials= {50,100,70,80,80,300,300,500,275};
         
         //Define Vars
         int materialSpeed; 
-        double drillDiamiter = 0; 
+        double drillDiameter = 1; 
         double result; 
+        String diameterString;
         
         //Get material value 
         DefaultComboBoxModel materialListModel = (DefaultComboBoxModel) materialBox.getModel();
@@ -198,18 +203,27 @@ public class CuttingGUI extends javax.swing.JFrame {
         materialSpeed = materials[materialSpeed]; 
         
         //Get drill diamiter 
-        try {
-            drillDiamiter = Double.valueOf((String)(diamiterBox.getSelectedItem()));
-        } catch (NumberFormatException e) {
-            
+        diameterString = (String)(diamiterBox.getSelectedItem());
+        
+        if (diameterString.matches(".*[a-zA-Z]+.*")){
+            resultLabel.setText("drill diamiter can't be a string");
+        } else if (diameterString.contains("/")){
+            if (diameterString.substring(diameterString.indexOf("/")+1).contains("/"))
+                resultLabel.setText("Only one '/'");
+            else
+                drillDiameter = drill.getValue(diameterString);
+        } else {
+            drillDiameter = Double.valueOf(diameterString);
+            System.out.println("Works");
         }
+        
 //        resultLabel.setText("= "+ diamiterBox.getSelectedItem() + " - " + diamiterBox.getSelectedIndex() );
         
         //Calculate
-        result = (materialSpeed * 4) / drillDiamiter; 
+        result = (materialSpeed * 4) / drillDiameter; 
         
         //Output callculation result
-        resultLabel.setText("= "+result);
+        //resultLabel.setText("= "+result);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
