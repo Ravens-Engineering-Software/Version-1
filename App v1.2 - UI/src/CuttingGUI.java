@@ -22,14 +22,17 @@ public class CuttingGUI extends javax.swing.JFrame {
      */
     public CuttingGUI() {
         initComponents();
+        reader.initialFileReader();
         DefaultComboBoxModel materialListModel = (DefaultComboBoxModel) materialBox.getModel();
+        DefaultComboBoxModel diameterListModel = (DefaultComboBoxModel) diameterBox.getModel();
         String[] materialNames={"steel","mild steel","carbon steel","stainless steel","bronze","aluminum","brass","plastic","wood"};
         for (String name:materialNames){
             materialListModel.addElement(name);
         }
-        resultLabel.setText("");
-        
-        reader.initialFileReader();
+        for (String name:reader.bitFraction){
+            diameterListModel.addElement(name); 
+        }
+        resultLabel.setText("");  
     }
 
     /**
@@ -53,7 +56,7 @@ public class CuttingGUI extends javax.swing.JFrame {
         materialBox = new javax.swing.JComboBox();
         numeratorLabel = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        diamiterBox = new javax.swing.JComboBox();
+        diameterBox = new javax.swing.JComboBox();
         jButton2 = new javax.swing.JButton();
         resultLabel = new javax.swing.JLabel();
         creditPanel = new javax.swing.JPanel();
@@ -131,9 +134,8 @@ public class CuttingGUI extends javax.swing.JFrame {
         numeratorLabel.setForeground(new java.awt.Color(204, 204, 204));
         numeratorLabel.setText("*              4");
 
-        diamiterBox.setEditable(true);
-        diamiterBox.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        diamiterBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        diameterBox.setEditable(true);
+        diameterBox.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jButton2.setText("GO");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -152,28 +154,27 @@ public class CuttingGUI extends javax.swing.JFrame {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(toolbarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(mainPanelLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                        .addComponent(diameterBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(110, 110, 110))
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
+                        .addComponent(rpmLabel)
+                        .addGap(18, 18, 18)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addComponent(rpmLabel)
+                                .addComponent(materialBox, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(mainPanelLayout.createSequentialGroup()
-                                        .addComponent(materialBox, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(numeratorLabel))
-                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                                .addComponent(diamiterBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(100, 100, 100))))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(196, 196, 196)
-                        .addComponent(resultLabel)
-                        .addGap(138, 138, 138)))
+                                .addComponent(numeratorLabel))
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jButton2)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(resultLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,10 +191,10 @@ public class CuttingGUI extends javax.swing.JFrame {
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(diamiterBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
+                .addComponent(diameterBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84)
                 .addComponent(resultLabel)
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
 
         rpmLabel.getAccessibleContext().setAccessibleDescription("");
@@ -351,7 +352,7 @@ public class CuttingGUI extends javax.swing.JFrame {
         drill.materialSpeed = materials[drill.materialSpeed]; 
         
         //Get drill diamiter 
-        drill.diameterString = (String)(diamiterBox.getSelectedItem());
+        drill.diameterString = (String)(diameterBox.getSelectedItem());
         
         //Finds diameter value and exicutes if no errors are found
         if (drill.findDiameter()==false){
@@ -406,7 +407,7 @@ public class CuttingGUI extends javax.swing.JFrame {
     private javax.swing.JSeparator cameronSeparator;
     private javax.swing.JLabel cat;
     private javax.swing.JPanel creditPanel;
-    private javax.swing.JComboBox diamiterBox;
+    private javax.swing.JComboBox diameterBox;
     private javax.swing.JLabel footer;
     private javax.swing.JLabel header;
     private javax.swing.JButton homeButton;
