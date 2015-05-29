@@ -14,7 +14,9 @@ import java.io.IOException;
 public class FileReader {
 
     //Create variables for file reading
-    File bitSizes = new File("D:\\Larose\\Version-1\\App v1.2 - UI\\src\\sizesListVIR.txt");
+    String fileSeperator = System.getProperty("file.separator"); 
+    String relativePath = "src" + fileSeperator + "resorces" + fileSeperator + "sizesListVIR.txt"; 
+    File bitSizes = new File(relativePath);
     FileInputStream fis = null;
     BufferedInputStream bis = null;
     DataInputStream dis = null;
@@ -64,5 +66,5 @@ public class FileReader {
             System.out.println("errorrororor.");
         }
     }
-
+    
 }
