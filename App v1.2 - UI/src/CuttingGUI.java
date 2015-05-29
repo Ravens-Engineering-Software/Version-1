@@ -13,7 +13,10 @@ import javax.swing.DefaultListModel;
 import javax.swing.DefaultComboBoxModel;
 
 public class CuttingGUI extends javax.swing.JFrame {
+    
+    FileReader reader = new FileReader(); 
 
+    DrillDiameter drill = new DrillDiameter(); 
     /**
      * Creates new form CuttingGUI
      */
@@ -25,6 +28,8 @@ public class CuttingGUI extends javax.swing.JFrame {
             materialListModel.addElement(name);
         }
         resultLabel.setText("");
+        
+        reader.initialFileReader();
     }
 
     /**
@@ -334,23 +339,30 @@ public class CuttingGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //Initalize
+        resultLabel.setText("");
+        
         //Create arrays
         int[] materials= {50,100,70,80,80,300,300,500,275};
         
         //Get material value 
         DefaultComboBoxModel materialListModel = (DefaultComboBoxModel) materialBox.getModel();
-        int materialSelected = materialListModel.getIndexOf(materialListModel.getSelectedItem());
-        int materialSpeed = materials[materialSelected]; 
+        drill.materialSpeed = materialListModel.getIndexOf(materialListModel.getSelectedItem());
+        drill.materialSpeed = materials[drill.materialSpeed]; 
         
         //Get drill diamiter 
-        int drillDiamiter = Integer.valueOf((String)(diamiterBox.getSelectedItem()));
-//        resultLabel.setText("= "+ diamiterBox.getSelectedItem() + " - " + diamiterBox.getSelectedIndex() );
+        drill.diameterString = (String)(diamiterBox.getSelectedItem());
         
-        //Calculate
-        int result = (materialSpeed * 4) / drillDiamiter; 
+        //Finds diameter value and exicutes if no errors are found
+        if (drill.findDiameter()==false){
+            //Calculate
+            drill.calculate();
         
-        //Output callculation result
-        resultLabel.setText("= "+result);
+            //Output calculation result
+            resultLabel.setText("= "+drill.RPM+" RPM");
+        } else {
+            resultLabel.setText(drill.errorMessage);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
