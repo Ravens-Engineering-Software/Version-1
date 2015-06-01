@@ -9,6 +9,7 @@
  * @author Kieran Bingham, Cameron Sokalski, Jacob Laross
  */
 
+import java.awt.CardLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.DefaultComboBoxModel;
 
@@ -46,7 +47,7 @@ public class CuttingGUI extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        cardPanel = new javax.swing.JPanel();
         mainPanel = new javax.swing.JPanel();
         toolbarPanel = new javax.swing.JPanel();
         toolbar = new javax.swing.JToolBar();
@@ -92,7 +93,7 @@ public class CuttingGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel2.setLayout(new java.awt.CardLayout());
+        cardPanel.setLayout(new java.awt.CardLayout());
 
         mainPanel.setBackground(new java.awt.Color(102, 0, 102));
 
@@ -107,10 +108,15 @@ public class CuttingGUI extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resorces/ldhssRaven.png"))); // NOI18N
         toolbar.add(jLabel1);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Credits");
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         toolbar.add(jButton1);
 
         javax.swing.GroupLayout toolbarPanelLayout = new javax.swing.GroupLayout(toolbarPanel);
@@ -199,7 +205,7 @@ public class CuttingGUI extends javax.swing.JFrame {
 
         rpmLabel.getAccessibleContext().setAccessibleDescription("");
 
-        jPanel2.add(mainPanel, "card2");
+        cardPanel.add(mainPanel, "card2");
 
         header.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         header.setForeground(new java.awt.Color(102, 0, 204));
@@ -245,6 +251,11 @@ public class CuttingGUI extends javax.swing.JFrame {
         homeButton.setFocusable(false);
         homeButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         homeButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        homeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeButtonActionPerformed(evt);
+            }
+        });
         toolbar1.add(homeButton);
 
         cat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resorces/cat-small.png"))); // NOI18N
@@ -323,17 +334,17 @@ public class CuttingGUI extends javax.swing.JFrame {
                 .addComponent(footer))
         );
 
-        jPanel2.add(creditPanel, "card3");
+        cardPanel.add(creditPanel, "card3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(cardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(cardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -365,6 +376,16 @@ public class CuttingGUI extends javax.swing.JFrame {
             resultLabel.setText(drill.errorMessage);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CardLayout cl = (CardLayout)(cardPanel.getLayout());
+        cl.next(cardPanel);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
+        CardLayout cl = (CardLayout)(cardPanel.getLayout());
+        cl.next(cardPanel);
+    }//GEN-LAST:event_homeButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -405,6 +426,7 @@ public class CuttingGUI extends javax.swing.JFrame {
     private javax.swing.JLabel cameronDescription;
     private javax.swing.JLabel cameronLabel;
     private javax.swing.JSeparator cameronSeparator;
+    private javax.swing.JPanel cardPanel;
     private javax.swing.JLabel cat;
     private javax.swing.JPanel creditPanel;
     private javax.swing.JComboBox diameterBox;
@@ -416,7 +438,6 @@ public class CuttingGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel jacobDescription;
     private javax.swing.JLabel jacobLabel;
