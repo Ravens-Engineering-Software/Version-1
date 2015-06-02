@@ -33,7 +33,9 @@ public class CuttingGUI extends javax.swing.JFrame {
         for (String name:reader.bitFraction){
             diameterListModel.addElement(name); 
         }
-        resultLabel.setText("");  
+        resultLabel.setText(" "); 
+        
+        diameterBox.setSelectedIndex(15);
     }
 
     /**
@@ -52,10 +54,14 @@ public class CuttingGUI extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         RPMButton = new javax.swing.JButton();
         feedRateButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
         RPMPanel = new javax.swing.JPanel();
         toolbarPanel = new javax.swing.JPanel();
         toolbar = new javax.swing.JToolBar();
         jLabel1 = new javax.swing.JLabel();
+        RPMMenuButton = new javax.swing.JButton();
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 32767));
         jButton1 = new javax.swing.JButton();
         rpmLabel = new javax.swing.JLabel();
         materialBox = new javax.swing.JComboBox();
@@ -78,6 +84,8 @@ public class CuttingGUI extends javax.swing.JFrame {
         cameronDescription = new javax.swing.JLabel();
         toolbar1 = new javax.swing.JToolBar();
         ravenEyes = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 32767));
         homeButton = new javax.swing.JButton();
         cat = new javax.swing.JLabel();
 
@@ -95,14 +103,17 @@ public class CuttingGUI extends javax.swing.JFrame {
         jLabel2.setText("hello");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(102, 0, 102));
         setResizable(false);
 
+        cardPanel.setBackground(new java.awt.Color(102, 0, 102));
         cardPanel.setLayout(new java.awt.CardLayout());
 
         mainPanel.setBackground(new java.awt.Color(102, 0, 102));
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        RPMButton.setFont(new java.awt.Font("Tahoma", 1, 21)); // NOI18N
         RPMButton.setText("RPM");
         RPMButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,6 +121,7 @@ public class CuttingGUI extends javax.swing.JFrame {
             }
         });
 
+        feedRateButton.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
         feedRateButton.setText("Feed Rate");
         feedRateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,34 +129,61 @@ public class CuttingGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resorces/small_logo.png"))); // NOI18N
+        jLabel3.setText("TEJ App");
+
+        jButton4.setText("Credits");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addGap(167, 167, 167)
+                .addComponent(jLabel3)
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addComponent(RPMButton)
-                .addGap(107, 107, 107)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107)
-                .addComponent(feedRateButton)
-                .addGap(96, 96, 96))
+                .addGap(96, 96, 96)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                        .addComponent(RPMButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(feedRateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                        .addComponent(jButton4)
+                        .addGap(249, 249, 249))))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
+                .addComponent(jLabel3)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(feedRateButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(RPMButton, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(212, 212, 212))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(RPMButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(feedRateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addContainerGap())
         );
 
-        cardPanel.add(mainPanel, "card4");
+        cardPanel.add(mainPanel, "menuCard");
 
         RPMPanel.setBackground(new java.awt.Color(102, 0, 102));
 
@@ -158,6 +197,18 @@ public class CuttingGUI extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resorces/ldhssRaven.png"))); // NOI18N
         toolbar.add(jLabel1);
+
+        RPMMenuButton.setText("Main Menu");
+        RPMMenuButton.setFocusable(false);
+        RPMMenuButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        RPMMenuButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        RPMMenuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RPMMenuButtonActionPerformed(evt);
+            }
+        });
+        toolbar.add(RPMMenuButton);
+        toolbar.add(filler2);
 
         jButton1.setText("Credits");
         jButton1.setFocusable(false);
@@ -251,7 +302,7 @@ public class CuttingGUI extends javax.swing.JFrame {
                 .addComponent(diameterBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(84, 84, 84)
                 .addComponent(resultLabel)
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addGap(205, 205, 205))
         );
 
         rpmLabel.getAccessibleContext().setAccessibleDescription("");
@@ -298,7 +349,19 @@ public class CuttingGUI extends javax.swing.JFrame {
         ravenEyes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resorces/ldhssRaven.png"))); // NOI18N
         toolbar1.add(ravenEyes);
 
-        homeButton.setText("Home");
+        jButton3.setText("Main Menu");
+        jButton3.setFocusable(false);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        toolbar1.add(jButton3);
+        toolbar1.add(filler1);
+
+        homeButton.setText("RPM Calc");
         homeButton.setFocusable(false);
         homeButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         homeButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -381,11 +444,11 @@ public class CuttingGUI extends javax.swing.JFrame {
                     .addComponent(cameronSeparator, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(cat)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(footer))
         );
 
-        cardPanel.add(creditPanel, "card3");
+        cardPanel.add(creditPanel, "creditPanel");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -430,12 +493,12 @@ public class CuttingGUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         CardLayout cl = (CardLayout)(cardPanel.getLayout());
-        cl.next(cardPanel);
+        cl.show(cardPanel, "creditPanel");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
-        CardLayout cl = (CardLayout)(cardPanel.getLayout());
-        cl.next(cardPanel);
+        CardLayout cl = (CardLayout) (cardPanel.getLayout());
+        cl.show(cardPanel, "RPMCard");
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void feedRateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feedRateButtonActionPerformed
@@ -446,6 +509,21 @@ public class CuttingGUI extends javax.swing.JFrame {
         CardLayout cl = (CardLayout) (cardPanel.getLayout());
         cl.show(cardPanel, "RPMCard");
     }//GEN-LAST:event_RPMButtonActionPerformed
+
+    private void RPMMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RPMMenuButtonActionPerformed
+        CardLayout cl = (CardLayout) (cardPanel.getLayout());
+        cl.show(cardPanel, "menuCard");
+    }//GEN-LAST:event_RPMMenuButtonActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        CardLayout cl = (CardLayout) (cardPanel.getLayout());
+        cl.show(cardPanel, "menuCard");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        CardLayout cl = (CardLayout)(cardPanel.getLayout());
+        cl.show(cardPanel, "creditPanel");
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -484,6 +562,7 @@ public class CuttingGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton RPMButton;
+    private javax.swing.JButton RPMMenuButton;
     private javax.swing.JPanel RPMPanel;
     private javax.swing.JLabel cameronDescription;
     private javax.swing.JLabel cameronLabel;
@@ -493,13 +572,18 @@ public class CuttingGUI extends javax.swing.JFrame {
     private javax.swing.JPanel creditPanel;
     private javax.swing.JComboBox diameterBox;
     private javax.swing.JButton feedRateButton;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler2;
     private javax.swing.JLabel footer;
     private javax.swing.JLabel header;
     private javax.swing.JButton homeButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
