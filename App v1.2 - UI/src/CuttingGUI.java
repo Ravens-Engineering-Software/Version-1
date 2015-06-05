@@ -26,7 +26,10 @@ public class CuttingGUI extends javax.swing.JFrame {
         reader.initialFileReader();
         DefaultComboBoxModel materialListModel = (DefaultComboBoxModel) materialBox.getModel();
         DefaultComboBoxModel diameterListModel = (DefaultComboBoxModel) diameterBox.getModel();
+        DefaultComboBoxModel spindleMaterialModel = (DefaultComboBoxModel) spindleMaterialBox.getModel();
         String[] materialNames={"steel","mild steel","carbon steel","stainless steel","bronze","aluminum","brass","plastic","wood"};
+        String[] spindleMaterialNames={"Aluminum","Brass","Plastic", "Lexan", "Low Carbon Steel","Medium Carbon Steel","Alloy Steel"};
+        int[] spindleMaterials= {450,275,350,350,123,90,90};
         for (String name:materialNames){
             materialListModel.addElement(name);
         }
@@ -34,6 +37,10 @@ public class CuttingGUI extends javax.swing.JFrame {
             diameterListModel.addElement(name); 
         }
         resultLabel.setText(" "); 
+        
+        for (String name:spindleMaterialNames){
+            spindleMaterialModel.addElement(name);
+        }
         
         diameterBox.setSelectedIndex(15);
     }
@@ -54,8 +61,9 @@ public class CuttingGUI extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         RPMButton = new javax.swing.JButton();
         feedRateButton = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        spindleSpeedButton = new javax.swing.JButton();
+        mainTitleLabel = new javax.swing.JLabel();
+        creditButton = new javax.swing.JButton();
         RPMPanel = new javax.swing.JPanel();
         toolbarPanel = new javax.swing.JPanel();
         toolbar = new javax.swing.JToolBar();
@@ -88,6 +96,22 @@ public class CuttingGUI extends javax.swing.JFrame {
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 32767));
         homeButton = new javax.swing.JButton();
         cat = new javax.swing.JLabel();
+        CNCPanel = new javax.swing.JPanel();
+        toolbarPanel1 = new javax.swing.JPanel();
+        toolbar2 = new javax.swing.JToolBar();
+        jLabel4 = new javax.swing.JLabel();
+        spindleMenuButton = new javax.swing.JButton();
+        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 32767));
+        jButton6 = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        spindlePanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        diameterBox1 = new javax.swing.JComboBox();
+        spindleMaterialBox = new javax.swing.JComboBox();
+        jSeparator3 = new javax.swing.JSeparator();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,15 +153,23 @@ public class CuttingGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resorces/small_logo.png"))); // NOI18N
-        jLabel3.setText("TEJ App");
-
-        jButton4.setText("Credits");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        spindleSpeedButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        spindleSpeedButton.setText("Spindle Speed");
+        spindleSpeedButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                spindleSpeedButtonActionPerformed(evt);
+            }
+        });
+
+        mainTitleLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        mainTitleLabel.setForeground(new java.awt.Color(204, 204, 204));
+        mainTitleLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resorces/small_logo.png"))); // NOI18N
+        mainTitleLabel.setText("TEJ App");
+
+        creditButton.setText("Credits");
+        creditButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creditButtonActionPerformed(evt);
             }
         });
 
@@ -147,7 +179,7 @@ public class CuttingGUI extends javax.swing.JFrame {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(167, 167, 167)
-                .addComponent(jLabel3)
+                .addComponent(mainTitleLabel)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addGap(96, 96, 96)
@@ -157,29 +189,35 @@ public class CuttingGUI extends javax.swing.JFrame {
                         .addGap(70, 70, 70)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(70, 70, 70)
-                        .addComponent(feedRateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(feedRateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(spindleSpeedButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(96, 96, 96))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                        .addComponent(jButton4)
+                        .addComponent(creditButton)
                         .addGap(249, 249, 249))))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel3)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(RPMButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addComponent(mainTitleLabel)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addGap(98, 98, 98)
+                                .addComponent(spindleSpeedButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(feedRateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(feedRateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                        .addGap(288, 288, 288)
+                        .addComponent(RPMButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(85, 85, 85)
+                .addComponent(creditButton)
                 .addContainerGap())
         );
 
@@ -264,9 +302,6 @@ public class CuttingGUI extends javax.swing.JFrame {
             .addGroup(RPMPanelLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(RPMPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RPMPanelLayout.createSequentialGroup()
-                        .addComponent(diameterBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(110, 110, 110))
                     .addGroup(RPMPanelLayout.createSequentialGroup()
                         .addComponent(rpmLabel)
                         .addGap(18, 18, 18)
@@ -276,7 +311,10 @@ public class CuttingGUI extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(numeratorLabel))
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RPMPanelLayout.createSequentialGroup()
+                        .addComponent(diameterBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(98, 98, 98)))
                 .addComponent(jButton2)
                 .addContainerGap(69, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RPMPanelLayout.createSequentialGroup()
@@ -288,7 +326,7 @@ public class CuttingGUI extends javax.swing.JFrame {
             RPMPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RPMPanelLayout.createSequentialGroup()
                 .addComponent(toolbarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
+                .addGap(94, 94, 94)
                 .addGroup(RPMPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(rpmLabel)
                     .addGroup(RPMPanelLayout.createSequentialGroup()
@@ -300,7 +338,7 @@ public class CuttingGUI extends javax.swing.JFrame {
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(diameterBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84)
+                .addGap(111, 111, 111)
                 .addComponent(resultLabel)
                 .addGap(205, 205, 205))
         );
@@ -444,11 +482,152 @@ public class CuttingGUI extends javax.swing.JFrame {
                     .addComponent(cameronSeparator, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(cat)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(90, 90, 90)
                 .addComponent(footer))
         );
 
         cardPanel.add(creditPanel, "creditPanel");
+
+        CNCPanel.setBackground(new java.awt.Color(102, 0, 102));
+
+        toolbar2.setBackground(new java.awt.Color(153, 153, 153));
+        toolbar2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        toolbar2.setFloatable(false);
+        toolbar2.setRollover(true);
+        toolbar2.setMaximumSize(new java.awt.Dimension(186, 25));
+        toolbar2.setMinimumSize(new java.awt.Dimension(186, 25));
+        toolbar2.setPreferredSize(new java.awt.Dimension(592, 25));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resorces/ldhssRaven.png"))); // NOI18N
+        toolbar2.add(jLabel4);
+
+        spindleMenuButton.setText("Main Menu");
+        spindleMenuButton.setFocusable(false);
+        spindleMenuButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        spindleMenuButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        spindleMenuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                spindleMenuButtonActionPerformed(evt);
+            }
+        });
+        toolbar2.add(spindleMenuButton);
+        toolbar2.add(filler3);
+
+        jButton6.setText("Credits");
+        jButton6.setFocusable(false);
+        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        toolbar2.add(jButton6);
+
+        javax.swing.GroupLayout toolbarPanel1Layout = new javax.swing.GroupLayout(toolbarPanel1);
+        toolbarPanel1.setLayout(toolbarPanel1Layout);
+        toolbarPanel1Layout.setHorizontalGroup(
+            toolbarPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(toolbar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        );
+        toolbarPanel1Layout.setVerticalGroup(
+            toolbarPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, toolbarPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(toolbar2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        spindlePanel.setBackground(new java.awt.Color(102, 0, 102));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("<html><u>Find spinndle speed (RPM) for CNC machines");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel5.setText("RPM = ");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel6.setText("* 12");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel7.setText("* Pi");
+
+        diameterBox1.setEditable(true);
+        diameterBox1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        spindleMaterialBox.setModel(new javax.swing.DefaultComboBoxModel());
+
+        javax.swing.GroupLayout spindlePanelLayout = new javax.swing.GroupLayout(spindlePanel);
+        spindlePanel.setLayout(spindlePanelLayout);
+        spindlePanelLayout.setHorizontalGroup(
+            spindlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(spindlePanelLayout.createSequentialGroup()
+                .addGroup(spindlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(spindlePanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(spindlePanelLayout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addGroup(spindlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(spindlePanelLayout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(spindleMaterialBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6))
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(spindlePanelLayout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addComponent(diameterBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabel7)))))
+                .addContainerGap(102, Short.MAX_VALUE))
+        );
+        spindlePanelLayout.setVerticalGroup(
+            spindlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(spindlePanelLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(143, 143, 143)
+                .addGroup(spindlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(spindlePanelLayout.createSequentialGroup()
+                        .addGroup(spindlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(spindleMaterialBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(spindlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(diameterBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(spindlePanelLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel5)))
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Spindle Speed (RPM)", spindlePanel);
+
+        javax.swing.GroupLayout CNCPanelLayout = new javax.swing.GroupLayout(CNCPanel);
+        CNCPanel.setLayout(CNCPanelLayout);
+        CNCPanelLayout.setHorizontalGroup(
+            CNCPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(toolbarPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
+        );
+        CNCPanelLayout.setVerticalGroup(
+            CNCPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CNCPanelLayout.createSequentialGroup()
+                .addComponent(toolbarPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jTabbedPane1))
+        );
+
+        cardPanel.add(CNCPanel, "spindleCard");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -502,7 +681,8 @@ public class CuttingGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void feedRateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feedRateButtonActionPerformed
-        // TODO add your handling code here:
+        CardLayout cl = (CardLayout) (cardPanel.getLayout());
+        cl.show(cardPanel, "feedRateCard");
     }//GEN-LAST:event_feedRateButtonActionPerformed
 
     private void RPMButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RPMButtonActionPerformed
@@ -520,10 +700,25 @@ public class CuttingGUI extends javax.swing.JFrame {
         cl.show(cardPanel, "menuCard");
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void creditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditButtonActionPerformed
         CardLayout cl = (CardLayout)(cardPanel.getLayout());
         cl.show(cardPanel, "creditPanel");
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_creditButtonActionPerformed
+
+    private void spindleSpeedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spindleSpeedButtonActionPerformed
+        CardLayout cl = (CardLayout) (cardPanel.getLayout());
+        cl.show(cardPanel, "spindleCard");
+    }//GEN-LAST:event_spindleSpeedButtonActionPerformed
+
+    private void spindleMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spindleMenuButtonActionPerformed
+        CardLayout cl = (CardLayout) (cardPanel.getLayout());
+        cl.show(cardPanel, "menuCard");
+    }//GEN-LAST:event_spindleMenuButtonActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        CardLayout cl = (CardLayout)(cardPanel.getLayout());
+        cl.show(cardPanel, "creditPanel");
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -561,6 +756,7 @@ public class CuttingGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel CNCPanel;
     private javax.swing.JButton RPMButton;
     private javax.swing.JButton RPMMenuButton;
     private javax.swing.JPanel RPMPanel;
@@ -569,24 +765,33 @@ public class CuttingGUI extends javax.swing.JFrame {
     private javax.swing.JSeparator cameronSeparator;
     private javax.swing.JPanel cardPanel;
     private javax.swing.JLabel cat;
+    private javax.swing.JButton creditButton;
     private javax.swing.JPanel creditPanel;
     private javax.swing.JComboBox diameterBox;
+    private javax.swing.JComboBox diameterBox1;
     private javax.swing.JButton feedRateButton;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
+    private javax.swing.Box.Filler filler3;
     private javax.swing.JLabel footer;
     private javax.swing.JLabel header;
     private javax.swing.JButton homeButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel jacobDescription;
     private javax.swing.JLabel jacobLabel;
     private javax.swing.JSeparator jacobSeparator;
@@ -594,13 +799,20 @@ public class CuttingGUI extends javax.swing.JFrame {
     private javax.swing.JLabel kieranLabel;
     private javax.swing.JSeparator kieranSeparator;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JLabel mainTitleLabel;
     private javax.swing.JComboBox materialBox;
     private javax.swing.JLabel numeratorLabel;
     private javax.swing.JLabel ravenEyes;
     private javax.swing.JLabel resultLabel;
     private javax.swing.JLabel rpmLabel;
+    private javax.swing.JComboBox spindleMaterialBox;
+    private javax.swing.JButton spindleMenuButton;
+    private javax.swing.JPanel spindlePanel;
+    private javax.swing.JButton spindleSpeedButton;
     private javax.swing.JToolBar toolbar;
     private javax.swing.JToolBar toolbar1;
+    private javax.swing.JToolBar toolbar2;
     private javax.swing.JPanel toolbarPanel;
+    private javax.swing.JPanel toolbarPanel1;
     // End of variables declaration//GEN-END:variables
 }
