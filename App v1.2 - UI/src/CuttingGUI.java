@@ -18,6 +18,7 @@ public class CuttingGUI extends javax.swing.JFrame {
     FileReader reader = new FileReader(); 
 
     DrillDiameter drill = new DrillDiameter(); 
+    DrillDiameter spindleDrill = new DrillDiameter();
     /**
      * Creates new form CuttingGUI
      */
@@ -27,9 +28,9 @@ public class CuttingGUI extends javax.swing.JFrame {
         DefaultComboBoxModel materialListModel = (DefaultComboBoxModel) materialBox.getModel();
         DefaultComboBoxModel diameterListModel = (DefaultComboBoxModel) diameterBox.getModel();
         DefaultComboBoxModel spindleMaterialModel = (DefaultComboBoxModel) spindleMaterialBox.getModel();
+        DefaultComboBoxModel spindleDiameterListModel = (DefaultComboBoxModel) diameterBox1.getModel();
         String[] materialNames={"steel","mild steel","carbon steel","stainless steel","bronze","aluminum","brass","plastic","wood"};
         String[] spindleMaterialNames={"Aluminum","Brass","Plastic", "Lexan", "Low Carbon Steel","Medium Carbon Steel","Alloy Steel"};
-        int[] spindleMaterials= {450,275,350,350,123,90,90};
         for (String name:materialNames){
             materialListModel.addElement(name);
         }
@@ -41,8 +42,13 @@ public class CuttingGUI extends javax.swing.JFrame {
         for (String name:spindleMaterialNames){
             spindleMaterialModel.addElement(name);
         }
+        for (String name:reader.bitFraction){
+            spindleDiameterListModel.addElement(name); 
+        }
+        spindleResultLabel.setText(" ");
         
         diameterBox.setSelectedIndex(15);
+        diameterBox1.setSelectedIndex(15);
     }
 
     /**
@@ -112,6 +118,8 @@ public class CuttingGUI extends javax.swing.JFrame {
         diameterBox1 = new javax.swing.JComboBox();
         spindleMaterialBox = new javax.swing.JComboBox();
         jSeparator3 = new javax.swing.JSeparator();
+        spindleCalculateButton = new javax.swing.JButton();
+        spindleResultLabel = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -560,10 +568,25 @@ public class CuttingGUI extends javax.swing.JFrame {
 
         spindleMaterialBox.setModel(new javax.swing.DefaultComboBoxModel());
 
+        spindleCalculateButton.setText("Calculate");
+        spindleCalculateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                spindleCalculateButtonActionPerformed(evt);
+            }
+        });
+
+        spindleResultLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        spindleResultLabel.setForeground(new java.awt.Color(204, 204, 204));
+        spindleResultLabel.setText("RPM = ");
+
         javax.swing.GroupLayout spindlePanelLayout = new javax.swing.GroupLayout(spindlePanel);
         spindlePanel.setLayout(spindlePanelLayout);
         spindlePanelLayout.setHorizontalGroup(
             spindlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, spindlePanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(spindleCalculateButton)
+                .addGap(225, 225, 225))
             .addGroup(spindlePanelLayout.createSequentialGroup()
                 .addGroup(spindlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(spindlePanelLayout.createSequentialGroup()
@@ -571,20 +594,23 @@ public class CuttingGUI extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(spindlePanelLayout.createSequentialGroup()
                         .addGap(69, 69, 69)
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
                         .addGroup(spindlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(spindleResultLabel)
                             .addGroup(spindlePanelLayout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(spindleMaterialBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6))
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(spindlePanelLayout.createSequentialGroup()
-                                .addGap(47, 47, 47)
-                                .addComponent(diameterBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(jLabel7)))))
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addGroup(spindlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(spindlePanelLayout.createSequentialGroup()
+                                        .addGap(32, 32, 32)
+                                        .addComponent(spindleMaterialBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel6))
+                                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(spindlePanelLayout.createSequentialGroup()
+                                        .addGap(47, 47, 47)
+                                        .addComponent(diameterBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(32, 32, 32)
+                                        .addComponent(jLabel7)))))))
                 .addContainerGap(102, Short.MAX_VALUE))
         );
         spindlePanelLayout.setVerticalGroup(
@@ -607,7 +633,11 @@ public class CuttingGUI extends javax.swing.JFrame {
                     .addGroup(spindlePanelLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jLabel5)))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(spindleCalculateButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addComponent(spindleResultLabel)
+                .addGap(103, 103, 103))
         );
 
         jTabbedPane1.addTab("Spindle Speed (RPM)", spindlePanel);
@@ -661,7 +691,7 @@ public class CuttingGUI extends javax.swing.JFrame {
         //Finds diameter value and exicutes if no errors are found
         if (drill.findDiameter()==false){
             //Calculate
-            drill.calculate();
+            drill.calculateRPM();
         
             //Output calculation result
             resultLabel.setText("= "+drill.RPM+" RPM");
@@ -719,6 +749,33 @@ public class CuttingGUI extends javax.swing.JFrame {
         CardLayout cl = (CardLayout)(cardPanel.getLayout());
         cl.show(cardPanel, "creditPanel");
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void spindleCalculateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spindleCalculateButtonActionPerformed
+        //Initalize
+        spindleResultLabel.setText(" ");
+        
+        //Create arrays
+        int[] spindleMaterials= {450,275,350,350,123,90,90};
+        
+        //Get material value 
+        DefaultComboBoxModel materialListModel = (DefaultComboBoxModel) spindleMaterialBox.getModel();
+        spindleDrill.materialSpeed = materialListModel.getIndexOf(materialListModel.getSelectedItem());
+        spindleDrill.materialSpeed = spindleMaterials[spindleDrill.materialSpeed]; 
+        
+        //Get drill diamiter 
+        spindleDrill.diameterString = (String)(diameterBox1.getSelectedItem());
+        
+        //Finds diameter value and exicutes if no errors are found
+        if (spindleDrill.findDiameter()==false){
+            //Calculate
+            spindleDrill.calculateSpindle();
+        
+            //Output calculation result
+            spindleResultLabel.setText("= "+spindleDrill.RPM+" RPM");
+        } else {
+            spindleResultLabel.setText(spindleDrill.errorMessage);
+        }
+    }//GEN-LAST:event_spindleCalculateButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -805,9 +862,11 @@ public class CuttingGUI extends javax.swing.JFrame {
     private javax.swing.JLabel ravenEyes;
     private javax.swing.JLabel resultLabel;
     private javax.swing.JLabel rpmLabel;
+    private javax.swing.JButton spindleCalculateButton;
     private javax.swing.JComboBox spindleMaterialBox;
     private javax.swing.JButton spindleMenuButton;
     private javax.swing.JPanel spindlePanel;
+    private javax.swing.JLabel spindleResultLabel;
     private javax.swing.JButton spindleSpeedButton;
     private javax.swing.JToolBar toolbar;
     private javax.swing.JToolBar toolbar1;

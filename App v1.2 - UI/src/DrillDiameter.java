@@ -51,7 +51,11 @@ public class DrillDiameter {
         return fractionValue; 
     }
     
-    void calculate(){
+    void calculateRPM(){
         RPM = (materialSpeed * 4)/drillDiameter; 
+    }
+    
+    void calculateSpindle(){
+        RPM = (materialSpeed * 12)/(drillDiameter * Math.PI); 
     }
 }
