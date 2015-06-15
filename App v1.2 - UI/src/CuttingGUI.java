@@ -120,6 +120,17 @@ public class CuttingGUI extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         spindleCalculateButton = new javax.swing.JButton();
         spindleResultLabel = new javax.swing.JLabel();
+        spindlePanel1 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        spindleCalculateButton1 = new javax.swing.JButton();
+        spindleResultLabel1 = new javax.swing.JLabel();
+        rField = new javax.swing.JTextField();
+        tField = new javax.swing.JTextField();
+        RPMFetch = new javax.swing.JButton();
+        RPMField = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -611,7 +622,7 @@ public class CuttingGUI extends javax.swing.JFrame {
                                         .addComponent(diameterBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(32, 32, 32)
                                         .addComponent(jLabel7)))))))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         spindlePanelLayout.setVerticalGroup(
             spindlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -635,12 +646,120 @@ public class CuttingGUI extends javax.swing.JFrame {
                         .addComponent(jLabel5)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(spindleCalculateButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
                 .addComponent(spindleResultLabel)
                 .addGap(103, 103, 103))
         );
 
         jTabbedPane1.addTab("Spindle Speed (RPM)", spindlePanel);
+
+        spindlePanel1.setBackground(new java.awt.Color(102, 0, 102));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("<html><u>Find Feed Rate for CNC machines");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel9.setText("Feed Rate = ");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel10.setText(" * ");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel11.setText(" * ");
+
+        spindleCalculateButton1.setText("Calculate");
+        spindleCalculateButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                spindleCalculateButton1ActionPerformed(evt);
+            }
+        });
+
+        spindleResultLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        spindleResultLabel1.setForeground(new java.awt.Color(204, 204, 204));
+        spindleResultLabel1.setText("= ");
+
+        rField.setText("Feed per tooth");
+        rField.setMinimumSize(new java.awt.Dimension(78, 20));
+        rField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rFieldActionPerformed(evt);
+            }
+        });
+
+        tField.setText("Teeth on cutter");
+        tField.setMinimumSize(new java.awt.Dimension(81, 20));
+
+        RPMFetch.setText("Fetch RPM");
+        RPMFetch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RPMFetchActionPerformed(evt);
+            }
+        });
+
+        RPMField.setText("Spindel RPM");
+        RPMField.setMaximumSize(new java.awt.Dimension(130, 2147483647));
+
+        javax.swing.GroupLayout spindlePanel1Layout = new javax.swing.GroupLayout(spindlePanel1);
+        spindlePanel1.setLayout(spindlePanel1Layout);
+        spindlePanel1Layout.setHorizontalGroup(
+            spindlePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(spindlePanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(spindlePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, spindlePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(spindlePanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel9)
+                            .addGap(0, 0, 0)
+                            .addComponent(rField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, 0)
+                            .addComponent(jLabel10)
+                            .addGap(0, 0, 0)
+                            .addComponent(tField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, 0)
+                            .addComponent(jLabel11)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, spindlePanel1Layout.createSequentialGroup()
+                        .addComponent(spindleCalculateButton1)
+                        .addGap(44, 44, 44)))
+                .addGroup(spindlePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(RPMFetch)
+                    .addComponent(RPMField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
+            .addGroup(spindlePanel1Layout.createSequentialGroup()
+                .addGap(146, 146, 146)
+                .addComponent(spindleResultLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        spindlePanel1Layout.setVerticalGroup(
+            spindlePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(spindlePanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(spindlePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(spindlePanel1Layout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addGroup(spindlePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(rField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10)
+                            .addComponent(tField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11)
+                            .addComponent(RPMField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(3, 3, 3)
+                        .addComponent(RPMFetch))
+                    .addGroup(spindlePanel1Layout.createSequentialGroup()
+                        .addGap(213, 213, 213)
+                        .addComponent(spindleCalculateButton1)))
+                .addGap(50, 50, 50)
+                .addComponent(spindleResultLabel1)
+                .addGap(100, 100, 100))
+        );
+
+        jTabbedPane1.addTab("Feed Rate", spindlePanel1);
 
         javax.swing.GroupLayout CNCPanelLayout = new javax.swing.GroupLayout(CNCPanel);
         CNCPanel.setLayout(CNCPanelLayout);
@@ -712,7 +831,8 @@ public class CuttingGUI extends javax.swing.JFrame {
 
     private void feedRateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feedRateButtonActionPerformed
         CardLayout cl = (CardLayout) (cardPanel.getLayout());
-        cl.show(cardPanel, "feedRateCard");
+        cl.show(cardPanel, "spindleCard");
+        jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_feedRateButtonActionPerformed
 
     private void RPMButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RPMButtonActionPerformed
@@ -738,6 +858,7 @@ public class CuttingGUI extends javax.swing.JFrame {
     private void spindleSpeedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spindleSpeedButtonActionPerformed
         CardLayout cl = (CardLayout) (cardPanel.getLayout());
         cl.show(cardPanel, "spindleCard");
+        jTabbedPane1.setSelectedIndex(0);
     }//GEN-LAST:event_spindleSpeedButtonActionPerformed
 
     private void spindleMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spindleMenuButtonActionPerformed
@@ -777,6 +898,32 @@ public class CuttingGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_spindleCalculateButtonActionPerformed
 
+    private void spindleCalculateButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spindleCalculateButton1ActionPerformed
+       //Initalize
+        spindleResultLabel1.setText(" ");
+        
+        try {
+            if ("".equals(rField.getText()) || "".equals(rField.getText()) || "".equals(rField.getText()))
+                throw new NumberFormatException("empty input");
+            double feedRateR = Double.valueOf(rField.getText());
+            double feedRateT = Double.valueOf(tField.getText());
+            double feedRateRPM = Double.valueOf(RPMField.getText());
+            
+            double feedRate = (feedRateR*feedRateT*feedRateRPM);
+            spindleResultLabel1.setText("= "+feedRate);
+        } catch(NumberFormatException e) {
+            spindleResultLabel1.setText("Error");
+        }
+    }//GEN-LAST:event_spindleCalculateButton1ActionPerformed
+
+    private void rFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rFieldActionPerformed
+
+    private void RPMFetchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RPMFetchActionPerformed
+        RPMField.setText(String.valueOf(spindleDrill.RPM));
+    }//GEN-LAST:event_RPMFetchActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -815,6 +962,8 @@ public class CuttingGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CNCPanel;
     private javax.swing.JButton RPMButton;
+    private javax.swing.JButton RPMFetch;
+    private javax.swing.JTextField RPMField;
     private javax.swing.JButton RPMMenuButton;
     private javax.swing.JPanel RPMPanel;
     private javax.swing.JLabel cameronDescription;
@@ -838,12 +987,16 @@ public class CuttingGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -859,15 +1012,20 @@ public class CuttingGUI extends javax.swing.JFrame {
     private javax.swing.JLabel mainTitleLabel;
     private javax.swing.JComboBox materialBox;
     private javax.swing.JLabel numeratorLabel;
+    private javax.swing.JTextField rField;
     private javax.swing.JLabel ravenEyes;
     private javax.swing.JLabel resultLabel;
     private javax.swing.JLabel rpmLabel;
     private javax.swing.JButton spindleCalculateButton;
+    private javax.swing.JButton spindleCalculateButton1;
     private javax.swing.JComboBox spindleMaterialBox;
     private javax.swing.JButton spindleMenuButton;
     private javax.swing.JPanel spindlePanel;
+    private javax.swing.JPanel spindlePanel1;
     private javax.swing.JLabel spindleResultLabel;
+    private javax.swing.JLabel spindleResultLabel1;
     private javax.swing.JButton spindleSpeedButton;
+    private javax.swing.JTextField tField;
     private javax.swing.JToolBar toolbar;
     private javax.swing.JToolBar toolbar1;
     private javax.swing.JToolBar toolbar2;
